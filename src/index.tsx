@@ -3,13 +3,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import { MetaMaskProvider } from "@metamask/sdk-react"
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+
+    <BrowserRouter>
+      <MetaMaskProvider
+        debug={false}
+        sdkOptions={{
+          dappMetadata: {
+            name: "Crypto Wallet dapp",
+            url: window.location.href,
+          },
+        }}
+      >
+        <App />
+      </MetaMaskProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
